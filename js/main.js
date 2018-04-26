@@ -27,10 +27,33 @@ var cards = [
 
 ];
 
+
+// fisher-yates shuffle
+var shuffle = function (array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+cards = shuffle(cards);
+
 var cardsInPlay = [];
 
 var checkForMatch = function () {
-		if (cardsInPlay[0] === cardsInPlay[1]){
+	if (cardsInPlay[0] === cardsInPlay[1]){
 		alert("You found a match!");
 	} else {
 		alert("Sorry,try again.");
@@ -45,7 +68,7 @@ var flipCard = function () {
 	console.log(cards[cardId].suit);
 	this.setAttribute('src', cards[cardId].cardImage);
 
-	if (cardsInPlay.length === 2) {	
+	if (cardsInPlay.length % 2 === 0) {	
 		checkForMatch();
 	}
 };
@@ -60,4 +83,6 @@ var createBoard = function () {
 	}
 }
 createBoard();
+
+
 
