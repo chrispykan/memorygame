@@ -28,7 +28,7 @@ var cards = [
 ];
 
 
-// fisher-yates shuffle
+// Fisher-Yates shuffle
 var shuffle = function (array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 
